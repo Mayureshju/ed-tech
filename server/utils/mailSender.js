@@ -1,18 +1,18 @@
 const nodemailer = require("nodemailer")
-
+const dotenv = require("dotenv");
 const mailSender = async (email, title, body) => {
   try {
     let transporter = nodemailer.createTransport({
-      host: process.env.MAIL_HOST,
+      service:"gmail",
       auth: {
         user: process.env.MAIL_USER,
         pass: process.env.MAIL_PASS,
       },
-      secure: false,
+    
     })
 
     let info = await transporter.sendMail({
-      from: `"Studynotion | CodeHelp" <${process.env.MAIL_USER}>`, // sender address
+      from: `"Studynotion | " <webswizards@gmail.com>`, // sender address
       to: `${email}`, // list of receivers
       subject: `${title}`, // Subject line
       html: `${body}`, // html body
